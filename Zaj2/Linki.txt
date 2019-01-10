@@ -1,0 +1,13 @@
+Demo dla klienta:
+
+Ekran logowania link:
+
+https://serwer1864358.home.pl/demo/login.html
+
+Ekran g³ówny aplikacji:
+
+https://serwer1864358.home.pl/demo/excel.html
+
+Przyk³ady komunikatów:
+
+https://serwer1864358.home.pl/demo/messagesExample.html
