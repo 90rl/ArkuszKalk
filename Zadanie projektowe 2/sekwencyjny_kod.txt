@@ -1,0 +1,34 @@
+title Diagram sekwencyjny
+
+U¿ytkownik->+System: Logowanie
+System->+Baza danych: SprawdŸ login(login)
+Baza danych-->System: brak u¿ytkownika
+System->U¿ytkownik: Komunikat o b³êdzie
+Baza danych-->-System: poprawny u¿ytkownik
+System->-U¿ytkownik: Wyœwietlenie arkusza
+
+U¿ytkownik->+System: Wprowadzenie danych do arkusza
+System->+Baza danych: Zapisanie danych do Baza danych(dane)
+Baza danych-->-System: b³¹d w po³¹czeniu
+System->-U¿ytkownik: Komunikat o b³êdzie
+
+U¿ytkownik->+System: Wprowadzenie formu³y do komórki
+System->+Baza danych: Przeliczenie i zapisanie do Baza danych(dane)
+Baza danych-->System: b³¹d w po³¹czeniu
+System->U¿ytkownik: Komunikat o b³êdzie
+Baza danych-->-System: poprawny zapis
+System->-U¿ytkownik: Pokazanie wyniku w komórce
+
+U¿ytkownik->+System: Naciœniêcie przycisku "Wyloguj"
+System->-U¿ytkownik: Pokazanie ekranu logowania
+
+
+
+
+
+
+
+
+
+
+https://www.websequencediagrams.com/
