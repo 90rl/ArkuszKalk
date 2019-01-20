@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Login</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
+<style>
+.alert{
+    display: none;
+}
+</style>
+</head>
+
+<script>
+	
+	function validateEmail(email) {
+		var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		return re.test(String(email).toLowerCase());
+	}
+
+	function auth(i){
+		var log = i.email.value;
+		var pw =  i.pass.value;
+		//alert('jjj');
+		if(!pw)
+			return;
+		if(!log)
+			return;
+		if(!validateEmail(log)){
+			alert("Email zły format ");
+			retutn;
+		}
+		
+		$.ajax({
+			url: 'login.php',
+			type: 'POST',
+			data: { login:log, pwd: pw  },
+			success: function(data) {
+				//alert(data);
+				if(data.indexOf("EXIST LOGIN") != -1){
+					location.href = 'excel.php';
+				}
+				
+				if(data.indexOf("NOTEXIST LOGIN") != -1){
+					//location.href = 'excel.php';
+					alert("Niepoprawny login i hasło");
+					return false;
+				}
+			},
+			error: function (data) {
+				alert('Problem z połączniem');
+			}
+		});
+		
+		return false;
+	}
+
+</script>
+
+<body>
+
+<div id="dropDownSelect1"></div>
+	
+	<div class="alert alert-info alert-dismissable" id="alert-alert">
+
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+  Sprawdź pola formularza
+
+</div>
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<form class="login100-form validate-form" method="POST" onsubmit="return auth(this)">
+					<span class="login100-form-title p-b-26">
+						Arkusz Kalkulacyjny <BR>
+						Online
+					</span>
+					<span class="login100-form-title p-b-48">
+						<i class="zmdi zmdi-font"></i>
+					</span>
+
+					<div class="wrap-input100 validate-input" data-validate = "Poprwany email: a@b.c">
+						<input class="input100" type="text" name="email" id="login">
+						<span class="focus-input100" data-placeholder="Email"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate="Wpisz hasło">
+						<span class="btn-show-pass">
+							<i class="zmdi zmdi-eye"></i>
+						</span>
+						<input class="input100" type="password" name="pass"; id ="pwd">
+						<span class="focus-input100" data-placeholder="Hasło"></span>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button class="login100-form-btn">
+								Zaloguj się 
+							</button>
+						</div>
+					</div>
+
+					<div class="text-center p-t-115">
+						<span class="txt1">
+							Nie masz konta ?
+						</span>
+
+						<a class="txt2" href="#">
+							Zarejestruj się
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+
+	
+
+	
+<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/daterangepicker/moment.min.js"></script>
+	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+
+</body>
+</html>
